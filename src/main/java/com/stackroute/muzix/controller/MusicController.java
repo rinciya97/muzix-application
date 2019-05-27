@@ -19,7 +19,7 @@ public class MusicController {
         this.musicService = musicService;
     }
     @PostMapping("track")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistsException{
+    public ResponseEntity<?> saveTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
         try
         {
@@ -29,8 +29,8 @@ public class MusicController {
         catch (TrackAlreadyExistsException ex)
         {
 
-            //responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-            throw ex;
+            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+
         }
         return responseEntity;
     }

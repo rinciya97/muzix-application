@@ -3,6 +3,7 @@ package com.stackroute.muzix.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.muzix.domain.Track;
 import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzix.exceptions.TrackDoesntExistException;
 import com.stackroute.muzix.service.MusicService;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -66,14 +68,17 @@ public class MusicControllerTest {
                 .andDo(MockMvcResultHandlers.print());//printing it
 
     }
+
+
+
     @Test
     public void saveTrackFailure() throws Exception {
-        when(musicService.saveTrack(any())).thenThrow(TrackAlreadyExistsException.class);
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/track")
-                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
-                .andExpect(MockMvcResultMatchers.status().isConflict())
-                .andDo(MockMvcResultHandlers.print());
-    }
+    when(musicService.saveTrack(any())).thenThrow(TrackAlreadyExistsException.class);
+    mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/track")
+            .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+            .andExpect(MockMvcResultMatchers.status().isConflict())
+            .andDo(MockMvcResultHandlers.print());
+     }
 
 
 
@@ -83,6 +88,15 @@ public class MusicControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void updateAlbum() throws TrackDoesntExistException, Exception {
+        when(musicService.updateTrack(any())).thenReturn(track);
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/track")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andDo(MockMvcResultHandlers.print());
     }
 

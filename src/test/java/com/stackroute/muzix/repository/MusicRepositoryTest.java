@@ -8,13 +8,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
-@DataJpaTest
+//@DataJpaTest
+@SpringBootTest
 public class MusicRepositoryTest {
     @Autowired
     private MusicRepository musicRepository;
@@ -43,17 +47,15 @@ public class MusicRepositoryTest {
         Assert.assertEquals(101,fetchTrack.getTrackid());
 
     }
+
     @Test
-    public void getByName() {
-    }
-    @Test
-    public void testGetAllUser(){
-        Track track = new Track(10,"beleiver","peppy");
-        Track track1 = new Track(11,"Jenny","Harry12");
-        musicRepository.save(track);
+    public void testGetAllTrack(){
+        Track track1 = new Track(1,"safari","peppy");
+        Track track2 = new Track(2,"Jenny","Harry12");
         musicRepository.save(track1);
+        musicRepository.save(track2);
 
         List<Track> list = musicRepository.findAll();
-        Assert.assertEquals("beleiver",list.get(0).getTrackname());
+        Assert.assertEquals("orasatha",list.get(0).getTrackname());
     }
 }
