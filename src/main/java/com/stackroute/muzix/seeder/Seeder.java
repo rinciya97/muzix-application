@@ -9,8 +9,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-//@PropertySource("application.properties")
+
 @Component
+@PropertySource("classpath:application.properties")
 public class Seeder implements ApplicationListener<ContextRefreshedEvent>, CommandLineRunner {
     @Autowired
     MusicService musicService;

@@ -13,13 +13,15 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Builder
+@Builder
 public class Track {
 //    public Track() {
 //    }
 
     @Id
     int trackid;
+    String trackname;
+    String genre;
 
 //    public Track(int trackid, String trackname, String genre) {
 //        this.trackid = trackid;
@@ -51,8 +53,6 @@ public class Track {
 //        this.genre = genre;
 //    }
 
-    String trackname;
-    String genre;
 
 //    @Override
 //    public String toString() {
