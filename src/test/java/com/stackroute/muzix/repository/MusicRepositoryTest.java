@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 //@DataJpaTest
-@SpringBootTest
+//@SpringBootTest
+@DataMongoTest
 public class MusicRepositoryTest {
     @Autowired
     private MusicRepository musicRepository;
@@ -56,6 +58,7 @@ public class MusicRepositoryTest {
         musicRepository.save(track2);
 
         List<Track> list = musicRepository.findAll();
-        Assert.assertEquals("orasatha",list.get(0).getTrackname());
+        Assert.assertEquals("Jenny",list.get(2).getTrackname());
+        System.out.println();
     }
 }
