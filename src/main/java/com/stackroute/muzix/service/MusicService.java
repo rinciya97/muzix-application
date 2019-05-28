@@ -12,5 +12,5 @@ public interface MusicService {
     public boolean deleteTrack(int trackid) throws TrackDoesntExistException;
     public Track updateTrack(Track track) throws TrackDoesntExistException;
 
-    List<Track> getByName(String trackName) throws TrackDoesntExistException;
+//    List<Track> getByName(String trackName) throws TrackDoesntExistException;
 }

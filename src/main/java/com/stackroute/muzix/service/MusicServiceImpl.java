@@ -71,12 +71,12 @@ public class MusicServiceImpl implements MusicService {
         return track;
     }
 
-    @Override
-    public List<Track> getByName(String trackname) throws TrackDoesntExistException {
-        List<Track> track = musicRepository.getByName(trackname);
-        if (track.isEmpty()) {
-            throw new TrackDoesntExistException("Track not found");
-        }
-        return track;
-    }
+//    @Override
+//    public List<Track> getByName(String trackname) throws TrackDoesntExistException {
+//        List<Track> track = musicRepository.getByName(trackname);
+//        if (track.isEmpty()) {
+//            throw new TrackDoesntExistException("Track not found");
+//        }
+//        return track;
+//    }
 }

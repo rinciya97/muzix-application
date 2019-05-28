@@ -3,7 +3,7 @@ import com.stackroute.muzix.domain.Track;
 import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzix.exceptions.TrackDoesntExistException;
 import com.stackroute.muzix.service.MusicService;
-import io.swagger.annotations.Api;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -64,15 +64,15 @@ public class MusicController {
     public ResponseEntity<?> getAllTrack(){
         return new ResponseEntity<List<Track>>(musicService.getAllTrack(),HttpStatus.OK);
     }
-    @GetMapping("/track/{trackname}")
-    public ResponseEntity<List<Track>> getByName (@PathVariable String trackname) {
-        ResponseEntity responseEntity;
-        try {
-            return new ResponseEntity<List<Track>>( musicService.getByName(trackname) , HttpStatus.OK);
-        }
-        catch (Exception e) {
-            responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-        }
-        return responseEntity;
-    }
+//    @GetMapping("/track/{trackname}")
+//    public ResponseEntity<List<Track>> getByName (@PathVariable String trackname) {
+//        ResponseEntity responseEntity;
+//        try {
+//            return new ResponseEntity<List<Track>>( musicService.getByName(trackname) , HttpStatus.OK);
+//        }
+//        catch (Exception e) {
+//            responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+//        }
+//        return responseEntity;
+//    }
 }
